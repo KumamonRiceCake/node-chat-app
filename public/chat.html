@@ -3,13 +3,11 @@
     <head>
         <title>Chat App</title>
         <link rel="icon" href="/img/favicon.png">
-        <link rel="stylesheet" href="/css/styles.min.css">
+        <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
         <div class="chat">
-            <div id="sidebar" class="chat__sidebar">
-
-            </div>
+            <div id="sidebar" class="chat__sidebar"></div>
             <div class="chat__main">
                 <div id="messages" class="chat__messages"></div>
 
@@ -23,32 +21,52 @@
             </div>
         </div>
 
-        <script id="message-template" type="text/html">
-            <div class="message">
-                <p>
-                    <span class="message__name">{{username}}</span>
-                    <span class="message__meta">{{createdAt}}</span>
-                </p>
-                <p>{{message}}</p>
-            </div>
+        <script type="text/template" id="message-template">
+            <li class="message">
+                <div class="message_header">
+                    <h4>{{username}}</h4>
+                    <span>{{createdAt}}</span>
+                </div>
+                <p class="message_body">{{message}}</p>
+            </li>
         </script>
 
-        <script id="location-message-template" type="text/html">
-            <div>
-                <p>
-                    <span class="message__name">{{username}}</span>
-                    <span class="message__meta">{{createdAt}}</span>
-                </p>
-                <p><a href="{{url}}" target="_blank">My current location</a></p><br>
-            </div>
+        <script type="text/template" id="self-message-template">
+            <li class="self-message">
+                <div class="message_header">
+                    <h4>Me</h4>
+                    <span>{{createdAt}}</span>
+                </div>
+                <p class="message_body">{{message}}</p>
+            </li>
+        </script>
+
+        <script type="text/template" id="location-message-template">
+            <li class="location-message">
+                <div class="message_header">
+                    <h4>{{username}}</h4>
+                    <span>{{createdAt}}</span>
+                </div>
+                <p class="message_body"><a href="{{url}}" target="_blank">{{username}}'s current location</a></p>
+            </li>
+        </script>
+
+        <script type="text/template" id="self-location-message-template">
+            <li class="self-location-message">
+                <div class="message_header">
+                    <h4>Me</h4>
+                    <span>{{createdAt}}</span>
+                </div>
+                <p class="message_body"><a href="{{url}}" target="_blank">My current location</a></p>
+            </li>
         </script>
 
         <script id="sidebar-template" type="text/html">
             <h2 class="room-title">{{room}}</h2>
-            <h3 class="list-title">Users</h3>
+            <h3 class="list-title">Participants</h3>
             <ul class="users">
                 {{#users}}
-                    <li>{{username}}</li>
+                    <ol><li>{{username}}</li></ol>
                 {{/users}}
             </ul>
         </script>

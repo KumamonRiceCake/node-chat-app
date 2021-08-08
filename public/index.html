@@ -3,20 +3,38 @@
     <head>
         <title>Chat App</title>
         <link rel="icon" href="/img/favicon.png">
-        <link rel="stylesheet" href="/css/styles.min.css">
+        <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
-        <div class="centered-form">
-            <div class="centered-form__box">
-                <h1>Join</h1>
-                <form action="/chat.html">
-                    <label>Display name</label>
-                    <input type="text" name="username" placeholder="Display name" required>
-                    <label>Room</label>
-                    <input type="text" name="room" placeholder="Room" required>
-                    <button>Join</button>
-                </form>
+        <div class="main">
+            <div id="roomlist-sidebar" class="roomlist__sidebar"></div>
+            <div class="centered-form">
+                <div class="centered-form__box">
+                    <h1>Welcome to Chat</h1>
+                    <form action="/chat.html">
+                        <label>Display name</label>
+                        <input type="text" name="username" placeholder="Display name" required>
+                        <label>Room</label>
+                        <input type="text" name="room" placeholder="Room" required>
+                        <label>Password</label>
+                        <input type="text" name="password" placeholder="Password">
+                        <button>Join</button>
+                    </form>
+                </div>
             </div>
         </div>
+
+        <script id="roomlist-template" type="text/html">
+            <h2 class="roomlist-title">Open Chat Rooms</h2>
+            <ul class="roomlist">
+                {{#rooms}}
+                    <ol><li>{{name}} ({{number}})</li></ol>
+                {{/rooms}}
+            </ul>
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/index.js"></script>
     </body>
 </html>
